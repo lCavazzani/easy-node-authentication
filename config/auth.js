@@ -25,7 +25,7 @@ module.exports = {
     'twitchAuth' : {
         'clientID'      : 'wicyupq8h14jx88i60vasnvbjj0hc8', // your App ID
         'clientSecret'  : 'fiao5xxonhk4znwekd0nnrvrnbg8qa', // your App Secret
-        'callbackURL'   : 'http://localhost:3003/auth/twitch/callback'
+        'callbackURL'   : 'http://localhost:8080/auth/twitch/callback'
     }
 
 };

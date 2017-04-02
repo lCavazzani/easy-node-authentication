@@ -87,6 +87,16 @@ module.exports = function(app, passport) {
                 successRedirect : '/profile',
                 failureRedirect : '/'
             }));
+            // twitch ---------------------------------
+
+        // send to twitch to do the authentication
+        app.get('/auth/twitch', passport.authenticate('twitch', { scope : ['user_read'] }));
+
+        // the callback after twitch has authenticated the user
+        app.get("/auth/twitch/callback", passport.authenticate("twitch", { failureRedirect: "/" }), function(req, res) {
+        // Successful authentication, redirect home.
+          res.redirect("/profile");
+        });
 
 // =============================================================================
 // AUTHORIZE (ALREADY LOGGED IN / CONNECTING OTHER SOCIAL ACCOUNT) =============
@@ -139,6 +149,14 @@ module.exports = function(app, passport) {
                 failureRedirect : '/'
             }));
 
+        app.get('/connect/twitch', passport.authorize('twitch', { scope : ['user_read'] }));
+
+        // the callback after google has authorized the user
+        app.get('/connect/twitch/callback',
+            passport.authorize('twitch', {
+                successRedirect : '/profile',
+                failureRedirect : '/'
+            }));
 // =============================================================================
 // UNLINK ACCOUNTS =============================================================
 // =============================================================================
@@ -183,6 +201,13 @@ module.exports = function(app, passport) {
         });
     });
 
+    app.get('/unlink/twitch', isLoggedIn, function(req, res) {
+        var user          = req.user;
+        user.twitch.token = undefined;
+        user.save(function(err) {
+            res.redirect('/profile');
+        });
+    });
 
 };
 
