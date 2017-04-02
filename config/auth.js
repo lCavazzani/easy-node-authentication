@@ -21,6 +21,11 @@ module.exports = {
         'clientID'         : 'your-secret-clientID-here',
         'clientSecret'     : 'your-client-secret-here',
         'callbackURL'      : 'http://localhost:8080/auth/google/callback'
+    },
+    'twitchAuth' : {
+        'clientID'      : 'wicyupq8h14jx88i60vasnvbjj0hc8', // your App ID
+        'clientSecret'  : 'fiao5xxonhk4znwekd0nnrvrnbg8qa', // your App Secret
+        'callbackURL'   : 'http://localhost:3003/auth/twitch/callback'
     }
 
 };
