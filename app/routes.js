@@ -41,7 +41,7 @@ module.exports = function(app, passport) {
 
         app.get('/connect/twitch', passport.authorize('twitch', { scope : ['user_read'] }));
 
-        // the callback after google has authorized the user
+        // the callback after twitch has authorized the user
         app.get('/connect/twitch/callback',
             passport.authorize('twitch', {
                 successRedirect : '/profile',
