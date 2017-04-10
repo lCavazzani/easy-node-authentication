@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+<head>
+    <title>Node Authentication</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <style>
+        body         { padding-top:80px; word-wrap:break-word; }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <div class="page-header text-center">
+        <h1><span class="fa fa-anchor"></span> Profile Page</h1>
+        <a href="/logout" class="btn btn-default btn-sm">Logout</a>
+    </div>
+
+        <!-- Twitch INFORMATION -->
+        <div class="col-sm-12">
+            <div class="well">
+                <h3 class="text-danger"><span class="fa fa-twitch"></span> Twitch - Canal</h3>
+
+                <% if (user.twitch.token) { %>
+                    <p>
+                        <strong>Status</strong>: <%= user.twitch.channel.status %><br>
+                        <strong>Display Name</strong>: <%= user.twitch.channel.display_name  %><br>
+                        <strong>Logo</strong>: <%= user.twitch.channel.logo %><br>
+                        <strong>Video Banner</strong>: <%= user.twitch.channel.video_banner %>
+                        <strong>Profile Banner</strong>: <%= user.twitch.channel.profile_banner  %><br>
+                        <strong>Url</strong>: <%= user.twitch.channel.url  %><br>
+                        <strong>Views</strong>: <%= user.twitch.channel.views %><br>
+                        <strong>Followers</strong>: <%= user.twitch.channel.followers %>
+                    </p>
+
+                    <a href="/unlink/twitch" class="btn btn-danger">Unlink</a>
+                <% } else { %>
+                    <a href="/connect/twitch" class="btn btn-danger">Connect Twitch</a>
+                <% } %>
+                <a href="/profile/info" class="btn btn-danger">Connect Twitch</a>
+            </div>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

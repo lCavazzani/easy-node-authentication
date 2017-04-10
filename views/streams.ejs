@@ -4,12 +4,6 @@
     <title>Node Authentication</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
-    <script src="https://ttv-api.s3.amazonaws.com/twitch.min.js"></script>
-    <script>
-      Twitch.init({clientId: 'wicyupq8h14jx88i60vasnvbjj0hc8'}, function(error, status) {
-        // the sdk is now loaded
-      });
-    </script>
     <style>
         body         { padding-top:80px; word-wrap:break-word; }
     </style>
@@ -25,14 +19,15 @@
         <!-- Twitch INFORMATION -->
         <div class="col-sm-12">
             <div class="well">
-                <h3 class="text-danger"><span class="fa fa-twitch"></span> Twitch</h3>
+                <h3 class="text-danger"><span class="fa fa-twitch"></span> Twitch - Canal</h3>
 
                 <% if (user.twitch.token) { %>
                     <p>
-                        <strong>id</strong>: <%= user.twitch.id %><br>
-                        <strong>token</strong>: <%= user.twitch.token %><br>
-                        <strong>email</strong>: <%= user.twitch.email%><br>
-                        <strong>name</strong>: <%= user.twitch.name %>
+                        <strong>Status</strong>: <%= user.twitch.stream.status %><br>
+                        <strong>game</strong>: <%= user.twitch.stream.game  %><br>
+                        <strong>community_id</strong>: <%= user.twitch.stream.community_id %><br>
+                        <strong>viewers</strong>: <%= user.twitch.stream.viewers %>
+
                     </p>
 
                     <a href="/unlink/twitch" class="btn btn-danger">Unlink</a>

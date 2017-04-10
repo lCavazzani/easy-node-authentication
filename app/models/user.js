@@ -38,17 +38,15 @@ var userSchema = mongoose.Schema({
         logo         : String,
         video_banner : String,
         profile_banner: String,
-        video_banner : String,
         url          : String,
-        views        : Number,
-        followers    : Number,
+        views        : String,
+        followers    : String,
       },
       stream         :{
         game         : String,
         status       : String,
         community_id : String,
-        viewers      : String
-      }
+        viewers      : String      }
     }
 
 });

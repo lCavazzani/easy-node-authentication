@@ -37,7 +37,7 @@ module.exports = function(passport) {
     twitchStrategy.passReqToCallback = true;  // allows us to pass in the req from our route (lets us check if a user is logged in or not)
     passport.use(new TwitchStrategy(twitchStrategy,
     function(req, token, refreshToken, profile, done) {
-        console.log(profile)
+      //  console.log(profile)
         // asynchronous
         process.nextTick(function() {
 

@@ -19,7 +19,7 @@ module.exports = function(app, passport) {
     app.get('/profile/stream', isLoggedIn, function(req, resp) {
       var user          = req.user;
       var options = {
-        url: 'https://api.twitch.tv/kraken/streams/69409226',
+        url: 'https://api.twitch.tv/kraken/streams/'+user.twitch.id,
         headers: {
           'Accept': 'application/vnd.twitchtv.v5+json',
           'Client-ID': 'wicyupq8h14jx88i60vasnvbjj0hc8'
@@ -31,7 +31,16 @@ module.exports = function(app, passport) {
         if (!error && response.statusCode == 200) {
           var info = JSON.parse(body);
           //console.log(body + " Stars");
-          resp.render('profile.ejs', {
+          if(info.stream!=null){
+          user.twitch.stream.game = info.game;
+          user.twitch.stream.status = "Online";
+          user.twitch.stream.community_id = info.community_id;
+          user.twitch.stream.viewers = info.viewers;
+          user.twitch.stream.status
+        }else{
+          user.twitch.stream.status = "Offline";
+        }
+          resp.render('streams.ejs', {
               user : req.user
           });
         }
@@ -56,8 +65,17 @@ module.exports = function(app, passport) {
       function callback(error, response, body) {
         if (!error && response.statusCode == 200) {
           var info = JSON.parse(body);
-          console.log(body + " CANAL");
-          resp.render('profile.ejs', {
+          console.log(info.name + " CANAL");
+          user.twitch.channel.status = info.status;
+          user.twitch.channel.display_name = info.display_name;
+          user.twitch.channel.logo = info.logo;
+          user.twitch.channel.video_banner = info.video_banner;
+          user.twitch.channel.profile_banner = info.profile_banner;
+          user.twitch.channel.url = info.url;
+          user.twitch.channel.views = info.views;
+          user.twitch.channel.followers = info.followers;
+
+          resp.render('channel.ejs', {
               user : req.user
           });
         }
