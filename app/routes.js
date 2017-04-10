@@ -1,3 +1,5 @@
+var querystring = require('querystring');
+var request = require('request');
 module.exports = function(app, passport) {
 
 // normal routes ===============================================================
@@ -13,6 +15,57 @@ module.exports = function(app, passport) {
             user : req.user
         });
     });
+    // STREAM SECTION =========================
+    app.get('/profile/stream', isLoggedIn, function(req, resp) {
+      var user          = req.user;
+      var options = {
+        url: 'https://api.twitch.tv/kraken/streams/69409226',
+        headers: {
+          'Accept': 'application/vnd.twitchtv.v5+json',
+          'Client-ID': 'wicyupq8h14jx88i60vasnvbjj0hc8'
+        }
+      };
+    //  console.log(options);
+
+      function callback(error, response, body) {
+        if (!error && response.statusCode == 200) {
+          var info = JSON.parse(body);
+          //console.log(body + " Stars");
+          resp.render('profile.ejs', {
+              user : req.user
+          });
+        }
+      }
+      request(options, callback);
+    });
+
+    // CHANNEL SECTION =========================
+    app.get('/profile/channel', isLoggedIn, function(req, resp) {
+      var user          = req.user;
+
+      var options = {
+        url: 'https://api.twitch.tv/kraken/channel',
+        headers: {
+          'Accept': 'application/vnd.twitchtv.v5+json',
+          'Client-ID': 'wicyupq8h14jx88i60vasnvbjj0hc8',
+          'Authorization': 'OAuth '+ user.twitch.token
+        }
+      };
+    //  console.log(options);
+
+      function callback(error, response, body) {
+        if (!error && response.statusCode == 200) {
+          var info = JSON.parse(body);
+          console.log(body + " CANAL");
+          resp.render('profile.ejs', {
+              user : req.user
+          });
+        }
+      }
+
+      request(options, callback);
+
+    });
 
     // LOGOUT ==============================
     app.get('/logout', function(req, res) {
@@ -26,7 +79,7 @@ module.exports = function(app, passport) {
             // twitch ---------------------------------
 
         // send to twitch to do the authentication
-        app.get('/auth/twitch', passport.authenticate('twitch', { scope : ['user_read'] }));
+        app.get('/auth/twitch', passport.authenticate('twitch', { scope : ['user_read channel_read'] }));
 
         // the callback after twitch has authenticated the user
         app.get("/auth/twitch/callback", passport.authenticate("twitch", { failureRedirect: "/" }), function(req, res) {
@@ -39,7 +92,7 @@ module.exports = function(app, passport) {
 // =============================================================================
 
 
-        app.get('/connect/twitch', passport.authorize('twitch', { scope : ['user_read'] }));
+        app.get('/connect/twitch', passport.authorize('twitch', { scope : ['user_read channel_read'] }));
 
         // the callback after twitch has authorized the user
         app.get('/connect/twitch/callback',

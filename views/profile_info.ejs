@@ -4,6 +4,12 @@
     <title>Node Authentication</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <script src="https://ttv-api.s3.amazonaws.com/twitch.min.js"></script>
+    <script>
+      Twitch.init({clientId: 'wicyupq8h14jx88i60vasnvbjj0hc8'}, function(error, status) {
+        // the sdk is now loaded
+      });
+    </script>
     <style>
         body         { padding-top:80px; word-wrap:break-word; }
     </style>
@@ -33,8 +39,7 @@
                 <% } else { %>
                     <a href="/connect/twitch" class="btn btn-danger">Connect Twitch</a>
                 <% } %>
-                <a href="/profile/stream" class="btn btn-danger">Info sobre Stream online</a>
-                <a href="/profile/channel" class="btn btn-danger">Info sobre o Canal</a>
+                <a href="/profile/info" class="btn btn-danger">Connect Twitch</a>
             </div>
         </div>
     </div>

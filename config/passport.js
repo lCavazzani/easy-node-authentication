@@ -37,7 +37,7 @@ module.exports = function(passport) {
     twitchStrategy.passReqToCallback = true;  // allows us to pass in the req from our route (lets us check if a user is logged in or not)
     passport.use(new TwitchStrategy(twitchStrategy,
     function(req, token, refreshToken, profile, done) {
-
+        console.log(profile)
         // asynchronous
         process.nextTick(function() {
 
@@ -72,6 +72,7 @@ module.exports = function(passport) {
                         newUser.twitch.id    = profile.id;
                         newUser.twitch.token = token;
                         newUser.twitch.name  = profile.username;
+                        newUser.twitch.email = profile.email;
                         //newUser.twitch.email = (profile.emails[0].value || '').toLowerCase();
 
                         newUser.save(function(err) {

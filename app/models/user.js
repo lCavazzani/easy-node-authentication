@@ -31,7 +31,24 @@ var userSchema = mongoose.Schema({
       id             : String,
       token          : String,
       email          : String,
-      name           : String
+      name           : String,
+      channel        :{
+        status       : String,
+        display_name : String,
+        logo         : String,
+        video_banner : String,
+        profile_banner: String,
+        video_banner : String,
+        url          : String,
+        views        : Number,
+        followers    : Number,
+      },
+      stream         :{
+        game         : String,
+        status       : String,
+        community_id : String,
+        viewers      : String
+      }
     }
 
 });
