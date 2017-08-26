@@ -19,7 +19,7 @@ module.exports = function(app, passport) {
     app.get('/profile/stream', isLoggedIn, function(req, resp) {
       var user          = req.user;
       var options = {
-        url: 'https://api.twitch.tv/kraken/streams/'+user.twitch.id,
+        url: 'https://api.twitch.tv/kraken/streams/43131877',
         headers: {
           'Accept': 'application/vnd.twitchtv.v5+json',
           'Client-ID': 'wicyupq8h14jx88i60vasnvbjj0hc8'
@@ -32,11 +32,10 @@ module.exports = function(app, passport) {
           var info = JSON.parse(body);
           //console.log(body + " Stars");
           if(info.stream!=null){
-          user.twitch.stream.game = info.game;
+          user.twitch.stream.game = info.stream.game;
           user.twitch.stream.status = "Online";
-          user.twitch.stream.community_id = info.community_id;
-          user.twitch.stream.viewers = info.viewers;
-          user.twitch.stream.status
+          user.twitch.stream.community_id = info.stream.community_id;
+          user.twitch.stream.viewers = info.stream.viewers;
         }else{
           user.twitch.stream.status = "Offline";
         }

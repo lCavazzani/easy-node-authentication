@@ -1,22 +1,27 @@
 {
-  "name": "node-authentication",
+  "name": "login_test",
+  "version": "1.0.0",
+  "description": "This code use Passport to authenticate users from Twitch.",
   "main": "server.js",
-  "dependencies" : {
-    "express": "~4.14.0",
-    "ejs": "~2.5.2",
-    "mongoose": "~4.6.1",
-    "passport": "~0.3.2",
-    "passport-local" : "~1.0.0",
-    "passport-facebook": "~2.1.1",
-    "passport-twitter": "~1.0.4",
-    "passport-google-oauth" : "~1.0.0",
-    "connect-flash": "~0.1.1",
-    "bcrypt-nodejs" : "latest",
-
-    "morgan": "~1.7.0",
-    "body-parser": "~1.15.2",
-    "cookie-parser": "~1.4.3",
-    "method-override": "~2.3.6",
-    "express-session": "~1.14.1"
-  }
+  "dependencies": {
+    "nodemon": "^1.11.0",
+    "passport-twitch": "^1.0.3",
+    "querystring": "^0.2.0",
+    "request": "^2.81.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lCavazzani/easy-node-authentication.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lCavazzani/easy-node-authentication/issues"
+  },
+  "homepage": "https://github.com/lCavazzani/easy-node-authentication#readme"
 }

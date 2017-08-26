@@ -46,7 +46,8 @@ var userSchema = mongoose.Schema({
         game         : String,
         status       : String,
         community_id : String,
-        viewers      : String      }
+        viewers      : String
+      }
     }
 
 });
